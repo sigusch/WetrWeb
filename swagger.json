@@ -388,6 +388,38 @@
         }
       }
     },
+    "/api/stations/stationName={stationName}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetLikeStationName",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "stationName",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/users": {
       "post": {
         "tags": [

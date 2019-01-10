@@ -17,11 +17,8 @@
       </li>
     </ul>
 
-    <form class="form-inline waves-light" mdbWavesEffect>
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Stationsuche">
-      </div>
-    </form>
+    <app-search (stationSelected)="stationSelected($event)">
+    </app-search>
   </links>
 
 </mdb-navbar>

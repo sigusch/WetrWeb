@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MeasurementManagementComponent } from './measurement-management/measurement-management.component';
 import { StationManagementComponent } from './station-management/station-management.component';
+import { StationDetailsComponent } from './station-details/station-details.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "station-management",
     component: StationManagementComponent
+  },
+  {
+    path: "stations/:id",
+    component: StationDetailsComponent
   }
 
 ];

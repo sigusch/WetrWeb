@@ -5,14 +5,13 @@ import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
 import { Observable as __Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { map as __map, filter as __filter, catchError as __catchError} from 'rxjs/operators';
+import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { Station } from '../models/station';
 @Injectable({
   providedIn: 'root',
 })
-export class StationService extends __BaseService {
+class StationService extends __BaseService {
   constructor(
     config: __Configuration,
     http: HttpClient
@@ -39,30 +38,12 @@ export class StationService extends __BaseService {
         return _r as __StrictHttpResponse<Array<Station>>;
       })
     );
-  }
-  StationGetAllStations(): __Observable<Array<Station>> {
+  }  
+  
+  StationGetAllStations():  __Observable<Array<Station>> {
     return this.StationGetAllStationsResponse().pipe(
       __map(_r => _r.body as Array<Station>)
     );
-  }
-
-  private handleError(error: Error | any): __Observable<any> {
-    return __Observable.throw(error);
-  }
-
-  getAll(): __Observable<Station[]> {
-    try {
-      console.log(this.http.get<Station[]>(`${environment.server}/api/stations`).pipe(__map(result => result["stations"])))
-      return this.http
-      .get<Station[]>(`${environment.server}/api/stations`)
-      .pipe(
-        __map(result => result["stations"]),
-        __catchError(this.handleError)
-      )
-    } catch (e) {
-      console.log(e);
-    }
-
   }
 
   /**
@@ -234,4 +215,43 @@ export class StationService extends __BaseService {
       __map(_r => _r.body as Array<Station>)
     );
   }
+
+  /**
+   * @param stationName undefined
+   */
+  StationGetLikeStationNameResponse(stationName: string): __Observable<__StrictHttpResponse<Array<Station>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/stations/stationName=${stationName}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<Station>>;
+      })
+    );
+  }
+  /**
+   * @param stationName undefined
+   */
+  StationGetLikeStationName(stationName: string): __Observable<Array<Station>> {
+    return this.StationGetLikeStationNameResponse(stationName).pipe(
+      __map(_r => _r.body as Array<Station>)
+    );
+  }
 }
+
+module StationService {
+}
+
+export { StationService }

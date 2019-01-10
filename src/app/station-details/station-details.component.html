@@ -1,0 +1,58 @@
+<!--div class="container" *ngIf="station">
+  <div class="row">
+    <h1>Wetterstation {{ station?.Name }}</h1>
+    <div class="container">
+      <h3>{{ station?.StationType?.Name }}</h3>
+      <h3>{{ station?.StationType?.Brand }}</h3>
+    </div>
+    <div class="container">
+      <div class="row">
+        <h4>Standort</h4>
+        {{ station?.Coordinate?.Latitude }} | {{ station?.Coordinate?.Longitude }}
+      </div>
+      <div class="row">
+        <h4>Straße: </h4>
+        {{ station?.Street }}
+      </div>
+      <div class="row">
+        <h4>Gemeinde: </h4>
+        <span class="align-bottom">{{ station?.Community?.Name }}</span>
+      </div>
+    </div>
+  </div>
+</div-->
+<div class="mx-auto mt-3" style="width: 700px;">
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel>
+    <ng-template ngbPanelTitle>
+      <h2>Wetterstation {{ station?.Name }}</h2>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="container">
+        <div class="row">
+          <h4>Stationstyp: {{ station?.StationType?.Name }}</h4>
+        </div>
+        <div class="row">
+          <h4>Stationsmarke: {{ station?.StationType?.Brand }}</h4>
+        </div>
+        <div class="row">
+          <h4>Standort: {{ station?.Coordinate?.Latitude }} | {{ station?.Coordinate?.Longitude }}</h4>
+        </div>
+        <div class="row">
+          <h4>Straße: </h4>
+          {{ station?.Street }}
+        </div>
+        <div class="row">
+          <h4>Gemeinde: {{ station?.Community?.Name }}</h4>
+        </div>
+        <div class="row">
+          <h4>Bezirk: {{ station?.Community?.District?.Name }}</h4>
+        </div>
+        <div class="row">
+          <h4>Bundesland: {{ station?.Community?.District?.Province?.Name }}</h4>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+</div>
