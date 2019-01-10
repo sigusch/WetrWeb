@@ -1,0 +1,18 @@
+<header class="h-100">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar intro-fixed-nav" [containerInside]="false">
+    <mdb-navbar-brand><a routerLink="dashboard"  routerLinkActive="active" class="navbar-brand" href="#">Wetr.Web</a></mdb-navbar-brand>
+      <links>
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item waves-light" routerLinkActive="active" mdbWavesEffect>
+                  <a routerLink="dashboard"   class="nav-link">Dashboard</a>
+              </li>
+              <li class="nav-item waves-light" routerLinkActive="active" mdbWavesEffect>
+                  <a routerLink="measurement-management" class="nav-link">Messungsverwaltung</a>
+              </li>
+              <li class="nav-item waves-light" routerLinkActive="active" mdbWavesEffect>
+                  <a routerLink="station-management" class="nav-link">Stationsverwaltung</a>
+              </li>
+          </ul>
+      </links>
+  </mdb-navbar>
+</header>
