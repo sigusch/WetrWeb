@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // server is a custom property defined by us
-  server: 'http://localhost:54405/api'
+  server: 'http://localhost:54405'
 };
 
 /*

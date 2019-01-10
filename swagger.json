@@ -1,0 +1,712 @@
+{
+  "x-generator": "NSwag v12.0.10.0 (NJsonSchema v9.13.11.0 (Newtonsoft.Json v11.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "Wetr.WebService API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:54405",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/measurements/{stationId}/from={from}to={to}": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetMeasurementForStation",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "stationId",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/measurements/{stationId}/from={from}to={to}accumType={accumulationType}intType={intervalType}": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetAccumulationForStation",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "stationId",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "type": "integer",
+            "name": "accumulationType",
+            "in": "path",
+            "required": true,
+            "x-schema": {
+              "$ref": "#/definitions/AccumulationType"
+            },
+            "x-nullable": false,
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "type": "integer",
+            "name": "intervalType",
+            "in": "path",
+            "required": true,
+            "x-schema": {
+              "$ref": "#/definitions/IntervalType"
+            },
+            "x-nullable": false,
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/measurements": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_Insert",
+        "parameters": [
+          {
+            "name": "m",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New Measurement inserted"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/search/{searchValue}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetBySearchValue",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "searchValue",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SearchResult"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "Search_GetBySearchResults",
+        "parameters": [
+          {
+            "name": "searchResults",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SearchResult"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/stations": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetAllStations",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Insert",
+        "parameters": [
+          {
+            "name": "s",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Station"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New Station inserted"
+          },
+          "409": {
+            "description": "Station does already exist"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Update",
+        "parameters": [
+          {
+            "name": "s",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Station"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Delete",
+        "parameters": [
+          {
+            "name": "s",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Station"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/stations/{id}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetById",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Station"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/stations/community={community}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetByCommunity",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "community",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_Login",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccumulationType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Min",
+        "Max",
+        "Avarage",
+        "Sum"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "IntervalType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "None",
+        "Day",
+        "Week",
+        "Month",
+        "Year"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "Measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "StationId",
+        "DateTime",
+        "Temperature",
+        "Pressure",
+        "Rainfall",
+        "Moisture",
+        "Velocity",
+        "Direction"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "StationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DateTime": {
+          "type": "string",
+          "format": "date-time",
+          "minLength": 1
+        },
+        "Temperature": {
+          "type": "number",
+          "format": "double"
+        },
+        "Pressure": {
+          "type": "number",
+          "format": "double"
+        },
+        "Rainfall": {
+          "type": "number",
+          "format": "double"
+        },
+        "Moisture": {
+          "type": "number",
+          "format": "double"
+        },
+        "Velocity": {
+          "type": "number",
+          "format": "double"
+        },
+        "Direction": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SearchResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "FilterType",
+        "Count"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FilterType": {
+          "$ref": "#/definitions/FilterType"
+        },
+        "Text": {
+          "type": "string"
+        },
+        "Count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Value": {}
+      }
+    },
+    "FilterType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Coordinate",
+        "Community",
+        "District",
+        "Province",
+        "Station"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "Station": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "Name",
+        "StationType",
+        "Coordinate",
+        "Community",
+        "User"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "StationType": {
+          "$ref": "#/definitions/StationType"
+        },
+        "Coordinate": {
+          "$ref": "#/definitions/Coordinate"
+        },
+        "Street": {
+          "type": "string"
+        },
+        "Community": {
+          "$ref": "#/definitions/Community"
+        },
+        "User": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "StationType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Brand": {
+          "type": "string"
+        }
+      }
+    },
+    "Coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Longitude",
+        "Latitude"
+      ],
+      "properties": {
+        "Longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "Latitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Community": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "Zip"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "District": {
+          "$ref": "#/definitions/District"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Zip": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "District": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Province": {
+          "$ref": "#/definitions/Province"
+        }
+      }
+    },
+    "Province": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Username": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

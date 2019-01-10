@@ -1,0 +1,62 @@
+<div style="width: 50%; margin:0 auto" >
+  <form class="text-center p-3" #myForm="ngForm" (ngSubmit)="submitForm()">
+
+    <p class="h4 mb-4">Messung hinzufügen</p>
+    <div>
+      <select name="StationId" [(ngModel)]="measurement.StationId" type="text" id="StationId" class="form-control mb-4" placeholder="Station" required>
+          <option *ngFor="let station of stations" [value]=station.Id selected>{{station.Name}}</option>
+      </select>
+      <!--input name="StationId" [(ngModel)]="measurement.StationId" type="text" id="StationId" class="form-control mb-4" placeholder="Station" required-->
+      <div *ngIf="errors.StationId" class="alert alert-danger">
+        {{ errors.StationId }}
+      </div>
+    </div>
+    <div>
+      <input name="DateTime" [(ngModel)]="measurement.DateTime" type="datetime-local" id="DateTime" class="form-control mb-4" placeholder="Zeitstempel" useValueAsDate  required>
+      <div *ngIf="errors.DateTime" class="alert alert-danger">
+        {{ errors.DateTime }}
+      </div>
+    </div>
+    <div>
+      <input name="Temperature" [(ngModel)]="measurement.Temperature" type="number" step="0.01" min="-273" max="100" id="Temperature" class="form-control mb-4" placeholder="Temperature" required>
+      <div *ngIf="errors.Temperature" class="alert alert-danger">
+        {{ errors.Temperature }}
+      </div>
+    </div>
+    <div>
+      <input name="Pressure" [(ngModel)]="measurement.Pressure" type="number" step="0.01" id="Pressure" class="form-control mb-4" placeholder="Luftdruck" required>
+      <div *ngIf="errors.Pressure" class="alert alert-danger">
+        {{ errors.Pressure }}
+      </div>
+    </div>
+    <div>
+      <input name="Rainfall" [(ngModel)]="measurement.Rainfall" type="number" step="0.01" min="-273" max="100" id="Rainfall" class="form-control mb-4" placeholder="Regenmenge" required>
+      <div *ngIf="errors.Rainfall" class="alert alert-danger">
+        {{ errors.Rainfall }}
+      </div>
+    </div>
+    <div>
+      <input name="Moisture" [(ngModel)]="measurement.Moisture" type="number" step="0.01" min="-273" max="100" id="Moisture" class="form-control mb-4" placeholder="Luftfeuchtigkeit" required>
+      <div *ngIf="errors.Moisture" class="alert alert-danger">
+        {{ errors.Moisture }}
+      </div>
+    </div>
+    <div>
+      <input name="Velocity" [(ngModel)]="measurement.Velocity" type="number" step="0.01" min="-273" max="100" id="Velocity" class="form-control mb-4" placeholder="Windgeschwindigkeit" required>
+      <div *ngIf="errors.Velocity" class="alert alert-danger">
+        {{ errors.Velocity }}
+      </div>
+    </div>
+    <div>
+      <input name="Direction" [(ngModel)]="measurement.Direction" type="number" step="0.01" min="-273" max="100" id="Direction" class="form-control mb-4" placeholder="Windrichtung" required>
+      <div *ngIf="errors.Direction" class="alert alert-danger">
+        {{ errors.Direction }}
+      </div>
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="myForm.invalid">Messung hinzufügen</button>
+
+
+
+  </form>
+<div>
