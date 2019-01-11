@@ -1,13 +1,14 @@
 <form class="form-inline waves-light" mdbWavesEffect>
   <div class="md-form my-0" [ngClass]="{ loading: isLoading }">
-    <input class="form-control mr-sm-2" type="text" placeholder="Stationsuche" #searchTerm (keyup)="keyup.emit(searchTerm.value)">
+    <!--input class="form-control mr-sm-2" type="text" placeholder="Stationsuche" onchange="filterStations()" #searchTerm (keyup)="keyup.emit(searchTerm.value)"-->
+    <input name="searchTerm" id="searchTerm" class="form-control mr-sm-2" type="text" placeholder="Stationsuche" [(ngModel)]="value" #searchTerm (keyup)="filterStations(searchTerm.value)" >
   </div>
   
 </form>
 <div class="results transition" [ngClass]="{ visible: foundStations.length }">
 
   <a href class="result"
-     (click)="stationSelected.emit(station); false"
+    (click)="stationClicked(station); stationSelected.emit(station); false"
      *ngFor="let station of foundStations">
     <div class="content">
       <div class="name" >{{ station.Name }}</div>
