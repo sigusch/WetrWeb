@@ -1,0 +1,21 @@
+<div style="width: 50%; margin:0 auto" >
+  <form class="text-center p-3" #myForm="ngForm" (ngSubmit)="submitForm()">
+
+    <p class="h4 mb-4">Login</p>
+
+    <div>
+      <input name="Username" [(ngModel)]="login.username" type="text" id="Username" class="form-control mb-4" placeholder="Benutzername" required>
+      <div *ngIf="errors.Username" class="alert alert-danger">
+        {{ errors.Username }}
+      </div>
+    </div>
+    
+    <div>
+      <input name="Password" [(ngModel)]="login.password" type="password" id="Password" class="form-control mb-4" placeholder="Password" required>
+      <div *ngIf="errors.Password" class="alert alert-danger">
+        {{ errors.Password }}
+      </div>
+    </div>
+    <button mdbBtn color="primary" block="true" class="my-4" type="submit" [disabled]="myForm.invalid">Login</button>
+  </form>
+<div>

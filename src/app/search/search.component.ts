@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router'
 import { Station } from '../api/models/station';
 import { StationService } from '../api/services';
 
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
 
   private keyup = new EventEmitter<String>();
 
-  constructor(private stationService: StationService) { }
+  constructor(private stationService: StationService, private router: Router) { }
 
   ngOnInit() {
     this.stationService.StationGetAllStations()

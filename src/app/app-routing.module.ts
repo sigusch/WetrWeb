@@ -4,16 +4,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MeasurementManagementComponent } from './measurement-management/measurement-management.component';
 import { StationManagementComponent } from './station-management/station-management.component';
 import { StationDetailsComponent } from './station-details/station-details.component';
+import { LoginComponent } from './login/login.component'
+import { CheckLoginGuard } from './check-login-guard.guard'
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "dashboard",
+    redirectTo: "home",
     pathMatch: "full"
   },
   {
+    path: "home",
+    component: HomeComponent
+  },
+  {
     path: "dashboard",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [ CheckLoginGuard ]
   },
   {
     path: "measurement-management",
@@ -21,11 +29,16 @@ const routes: Routes = [
   },
   {
     path: "station-management",
-    component: StationManagementComponent
+    component: StationManagementComponent,
+    canActivate: [ CheckLoginGuard ]
   },
   {
     path: "stations/:id",
     component: StationDetailsComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   }
 
 ];

@@ -13,8 +13,9 @@ import { StationManagementComponent } from './station-management/station-managem
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
-import { MaterialModule } from './material-module';
-import { StationDetailsComponent } from './station-details/station-details.component'
+import { StationDetailsComponent } from './station-details/station-details.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component'
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { StationDetailsComponent } from './station-details/station-details.compo
     MeasurementManagementComponent,
     StationManagementComponent,
     SearchComponent,
-    StationDetailsComponent
+    StationDetailsComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { StationDetailsComponent } from './station-details/station-details.compo
     FormsModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

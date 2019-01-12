@@ -27,8 +27,6 @@ export class MeasurementManagementComponent implements OnInit {
   }
 
   submitForm() {
-    // unnecessary, because we already use two-way binding
-    //this.book.author = this.myForm.value.author;
     console.log(this.measurement)
     this.measurementService.MeasurementInsert(this.measurement)
       .subscribe(() => {
