@@ -28,7 +28,7 @@ class MeasurementService extends __BaseService {
    *
    * - `from`:
    */
-  MeasurementGetMeasurementForStationResponse(params: MeasurementService.MeasurementGetMeasurementForStationParams): __Observable<__StrictHttpResponse<Blob>> {
+  MeasurementGetMeasurementForStationResponse(params: MeasurementService.MeasurementGetMeasurementForStationParams): __Observable<__StrictHttpResponse<Array<Measurement>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -42,13 +42,13 @@ class MeasurementService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'blob'
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
+        return _r as __StrictHttpResponse<Array<Measurement>>;
       })
     );
   }
@@ -61,9 +61,9 @@ class MeasurementService extends __BaseService {
    *
    * - `from`:
    */
-  MeasurementGetMeasurementForStation(params: MeasurementService.MeasurementGetMeasurementForStationParams): __Observable<Blob> {
+  MeasurementGetMeasurementForStation(params: MeasurementService.MeasurementGetMeasurementForStationParams): __Observable<Array<Measurement>> {
     return this.MeasurementGetMeasurementForStationResponse(params).pipe(
-      __map(_r => _r.body as Blob)
+      __map(_r => _r.body as Array<Measurement>)
     );
   }
 
@@ -80,7 +80,7 @@ class MeasurementService extends __BaseService {
    *
    * - `accumulationType`:
    */
-  MeasurementGetAccumulationForStationResponse(params: MeasurementService.MeasurementGetAccumulationForStationParams): __Observable<__StrictHttpResponse<Blob>> {
+  MeasurementGetAccumulationForStationResponse(params: MeasurementService.MeasurementGetAccumulationForStationParams): __Observable<__StrictHttpResponse<Array<Measurement>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -96,13 +96,13 @@ class MeasurementService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'blob'
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
+        return _r as __StrictHttpResponse<Array<Measurement>>;
       })
     );
   }
@@ -119,9 +119,9 @@ class MeasurementService extends __BaseService {
    *
    * - `accumulationType`:
    */
-  MeasurementGetAccumulationForStation(params: MeasurementService.MeasurementGetAccumulationForStationParams): __Observable<Blob> {
+  MeasurementGetAccumulationForStation(params: MeasurementService.MeasurementGetAccumulationForStationParams): __Observable<Array<Measurement>> {
     return this.MeasurementGetAccumulationForStationResponse(params).pipe(
-      __map(_r => _r.body as Blob)
+      __map(_r => _r.body as Array<Measurement>)
     );
   }
 
@@ -177,9 +177,9 @@ module MeasurementService {
   export interface MeasurementGetAccumulationForStationParams {
     to: string;
     stationId: string;
-    intervalType: 0 | 1 | 2 | 3 | 4;
+    intervalType: "0" | "1" | "2" | "3" | "4";
     from: string;
-    accumulationType: 0 | 1 | 2 | 3 | 4;
+    accumulationType: "0" | "1" | "2" | "3" | "4";
   }
 }
 

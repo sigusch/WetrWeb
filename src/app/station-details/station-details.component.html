@@ -1,3 +1,4 @@
+<div class="mx-auto mt-3" style="width: 1500px;">
 <div class="mx-auto mt-3" style="width: 700px;">
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel>
@@ -34,4 +35,17 @@
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
+</div>
+<div style="display: block">
+  <canvas mdbChart
+      [chartType]="chartType"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [colors]="chartColors"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
 </div>

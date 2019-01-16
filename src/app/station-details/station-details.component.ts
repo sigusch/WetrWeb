@@ -11,6 +11,52 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class StationDetailsComponent implements OnInit, OnDestroy {
   station: Station = new Station();
   favorites: Array<string>;
+  measurements: Array<Measurement>;
+
+
+  public chartType: string = 'line';
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: 'rgba(105, 0, 70, .2)',
+      borderColor: 'rgba(200, 27, 27, .7)',
+      borderWidth: 2,
+    },
+    {
+      backgroundColor: 'rgba(0, 137, 132, .2)',
+      borderColor: 'rgba(0, 10, 130, .7)',
+      borderWidth: 2,
+    },
+    {
+      backgroundColor: 'rgba(140, 130, 0, .2)',
+      borderColor: 'rgba(250, 240, 0, .7)',
+      borderWidth: 2,
+    },
+    {
+      backgroundColor: 'rgba(30, 130, 50, .2)',
+      borderColor: 'rgba(0, 140, 30, .7)',
+      borderWidth: 2,
+    },
+    {
+      backgroundColor: 'rgba(0, 137, 132, .2)',
+      borderColor: 'rgba(0, 10, 130, .7)',
+      borderWidth: 2,
+    }
+  ];
+  public chartOptions: any = {
+    responsive: true
+  };
+  public chartClicked(e: any): void { }
+  public chartHovered(e: any): void { }
+  public chartDatasets: Array<any> = [
+    { data: [], label: 'Temperatur' },
+    { data: [], label: 'Luftdruck' },
+    { data: [], label: 'Niederschlagsmenge' },
+    { data: [], label: 'Luftfeuchtigkeit in %' },
+    { data: [], label: 'Windgeschwindigkeit' },
+  ];
+
+  public chartLabels: Array<any> = [];
+
 
   @Input() stationInput: Station;
 
@@ -23,9 +69,29 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log("onInit");
     this.route.params.subscribe(parameters => 
+      //this.measurementService.MeasurementGetMeasurementForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2018"})
+      this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2019", intervalType: "2", accumulationType: "3"})
+        .subscribe(measurements => {
+          this.measurements = measurements;
+          
+          measurements.forEach(measurement => {
+            this.chartDatasets[0].data.push(measurement.Temperature);
+            this.chartDatasets[1].data.push(measurement.Pressure);
+            this.chartDatasets[2].data.push(measurement.Rainfall);
+            this.chartDatasets[3].data.push(measurement.Moisture*100);
+            this.chartDatasets[4].data.push(measurement.Velocity);
+            this.chartLabels.push(measurement.DateTime);
+            
+          });
+        })
+    );
+
+
+    this.route.params.subscribe(parameters => 
       this.stationService.StationGetById(parameters["id"])
         .subscribe(station => this.station = station)
     );
+
     const parameters = this.route.snapshot.params;
     let data = localStorage.getItem("Dashboard");
     this.favorites = JSON.parse(data);
