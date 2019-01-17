@@ -1,0 +1,32 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../../img/4k-wallpaper-adventure-climb-691668.jpg");
+  background-repeat: no-repeat, repeat;
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  min-height: 94vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.welcome {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    vertical-align: middle;
+    padding-top: 25%;
+    font-weight: bolder;
+}
