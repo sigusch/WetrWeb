@@ -3,32 +3,32 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel>
     <ng-template ngbPanelTitle>
-      <h2>Wetterstation {{ station?.Name }}    <i *ngIf="this.favorites.includes(station?.Id?.toString())" class="fa fa-star" style="color:gold; font-size: 30px" ></i></h2>
+      <h2>Wetterstation {{ station?.Name }}    <i *ngIf="this.favorites.includes(station?.Id?.toString()) && login" class="fa fa-star" style="color:gold; font-size: 30px" ></i></h2>
     </ng-template>
     <ng-template ngbPanelContent>
       <div class="container">
         <div class="row">
-          <h4>Stationstyp: {{ station?.StationType?.Name }}</h4>
+          <h5>Stationstyp: {{ station?.StationType?.Name }}</h5>
         </div>
         <div class="row">
-          <h4>Stationsmarke: {{ station?.StationType?.Brand }}</h4>
+          <h5>Stationsmarke: {{ station?.StationType?.Brand }}</h5>
         </div>
         <div class="row">
-          <h4>Standort: {{ station?.Coordinate?.Latitude }} | {{ station?.Coordinate?.Longitude }}</h4>
+          <h5>Standort: {{ station?.Coordinate?.Latitude }} | {{ station?.Coordinate?.Longitude }}</h5>
         </div>
         <div class="row">
-          <h4>Gemeinde: {{ station?.Community?.Name }}</h4>
+          <h5>Gemeinde: {{ station?.Community?.Name }}</h5>
         </div>
         <div class="row">
-          <h4>Bezirk: {{ station?.Community?.District?.Name }}</h4>
+          <h5>Bezirk: {{ station?.Community?.District?.Name }}</h5>
         </div>
         <div class="row">
-          <h4>Bundesland: {{ station?.Community?.District?.Province?.Name }}</h4>
+          <h5>Bundesland: {{ station?.Community?.District?.Province?.Name }}</h5>
         </div>
-        <button id="addToDashboardBtn" *ngIf="this.favorites.includes(station?.Id?.toString())" mdbBtn color="danger" block="true" class="mt-2" (click)="addToDashboard()">
+        <button id="addToDashboardBtn" *ngIf="this.favorites.includes(station?.Id?.toString()) && login" mdbBtn color="danger" block="true" class="mt-2" (click)="addToDashboard()">
           {{ this.favorites.includes(station?.Id?.toString()) ? "Vom Dashboard entfernen" : "Zum Dashboard hinzufügen" }}
         </button>
-        <button id="addToDashboardBtn" *ngIf="!this.favorites.includes(station?.Id?.toString())" mdbBtn color="primary" block="true" class="mt-2" (click)="addToDashboard()">
+        <button id="addToDashboardBtn" *ngIf="!this.favorites.includes(station?.Id?.toString()) && login" mdbBtn color="primary" block="true" class="mt-2" (click)="addToDashboard()">
           {{ this.favorites.includes(station?.Id?.toString()) ? "Vom Dashboard entfernen" : "Zum Dashboard hinzufügen" }}
         </button>
       </div>

@@ -2,7 +2,9 @@
   <form class="text-center p-3" #myForm="ngForm" (ngSubmit)="submitForm()">
 
     <p class="h4 mb-4">Login</p>
-
+    <div *ngIf="loginError" class="alert alert-danger">
+      {{ loginError }}
+    </div>
     <div>
       <input name="Username" [(ngModel)]="login.username" type="text" id="Username" class="form-control mb-4" placeholder="Benutzername" required>
       <div *ngIf="errors.Username" class="alert alert-danger">

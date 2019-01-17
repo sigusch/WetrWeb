@@ -7,9 +7,13 @@ import { Station } from "../api/models"
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+  username: string;
+  login: boolean;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.username = (sessionStorage.getItem('username'));
+    this.login = (sessionStorage.getItem('login')) != null;
   }
 
   stationSelected(selectedStation: Station) {
@@ -17,6 +21,13 @@ export class HeaderComponent implements OnInit {
       ["../stations", selectedStation.Id], {
         relativeTo: this.route
     });
+  }
+
+  logoutClick() {
+    sessionStorage.clear();
+    this.username = null;
+    this.login = null;
+    console.log('loggin out');
   }
 
 }

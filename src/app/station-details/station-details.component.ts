@@ -12,7 +12,7 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
   station: Station = new Station();
   favorites: Array<string>;
   measurements: Array<Measurement>;
-
+  login: boolean;
 
   public chartType: string = 'line';
   public chartColors: Array<any> = [
@@ -67,10 +67,10 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() {
-    console.log("onInit");
+    this.login = (sessionStorage.getItem('login')) != null;
     this.route.params.subscribe(parameters => 
       //this.measurementService.MeasurementGetMeasurementForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2018"})
-      this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2019", intervalType: "2", accumulationType: "3"})
+      this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: "01-01-2018", to: "01-12-2018", intervalType: "1", accumulationType: "3"})
         .subscribe(measurements => {
           this.measurements = measurements;
           
@@ -85,8 +85,6 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
           });
         })
     );
-
-
     this.route.params.subscribe(parameters => 
       this.stationService.StationGetById(parameters["id"])
         .subscribe(station => this.station = station)
@@ -98,7 +96,6 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("onDestroy");
   }
   
 

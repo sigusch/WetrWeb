@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   errors: { [key: string]: string } = {};
-
+  loginError: string;
   private return: string = '';
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
@@ -27,7 +27,16 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.login.username + " | " + this.login.password);
+    this.userService.UserLogin( {username: this.login.username, password: this.login.password}).subscribe(() => {},
+      error => {
+        this.loginError = 'Benutzername oder Passwort falsch';
+      },
+      () => {
+        sessionStorage.setItem('login', 'true');
+        sessionStorage.setItem('username', this.login.username);
+        this.router.navigateByUrl(this.return);
+        document.location.reload(true);
+      })
   }
 
   updateErrorMessages() {
