@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Station, Measurement } from '../api/models'
 import { StationService, MeasurementService } from '../api/services'
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './station-details.component.html',
   styleUrls: ['./station-details.component.scss']
 })
-export class StationDetailsComponent implements OnInit, OnDestroy {
+export class StationDetailsComponent implements OnInit, OnDestroy, OnChanges {
   station: Station = new Station();
   favorites: Array<string>;
   measurements: Array<Measurement>;
@@ -97,6 +97,26 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
       this.favorites = new Array<string>();
   }
 
+  ngOnChanges() {
+    console.log("onChanges");
+    this.route.params.subscribe(parameters => 
+      //this.measurementService.MeasurementGetMeasurementForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2018"})
+      this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: "01-01-2018", to: "01-12-2018", intervalType: "1", accumulationType: "3"})
+        .subscribe((measurements) => {this.measurements = measurements;},() => {},
+          () => {
+            this.measurements.forEach(measurement => {
+              this.chartDatasets[0].data.push(measurement.Temperature);
+              this.chartDatasets[1].data.push(measurement.Pressure);
+              this.chartDatasets[2].data.push(measurement.Rainfall);
+              this.chartDatasets[3].data.push(measurement.Moisture*100);
+              this.chartDatasets[4].data.push(measurement.Velocity);
+              this.chartLabels.push(measurement.DateTime);
+              
+            });
+          })
+    );
+  }
+
   ngOnDestroy() {
   }
   
@@ -128,6 +148,7 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
     this.favorites = items;
     
   }
+  
 
 
 

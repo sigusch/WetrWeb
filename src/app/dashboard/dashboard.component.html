@@ -1,6 +1,6 @@
 <div class="dashboard">
   <div class="container-fluid" style="display: flex; flex-flow: row wrap; align-content: space-between; justify-content: center; width: 70%">
-    <mdb-card *ngFor="let station of favoriteStations" style="width: 22rem; margin: 10px; position: relative;">
+    <mdb-card *ngFor="let station of favoriteStations" class="animated bounceIn" style="width: 22rem; margin: 10px; position: relative;">
       <!--Card image-->
       <mdb-card-img style="height: 50%; width: 50%; align-self: center;" src="https://cdn4.iconfinder.com/data/icons/weather-205/32/21_weather_condition_forecast_sun_cloud_rain-512.png" alt="Card image cap"></mdb-card-img>
       <!--Card content-->
@@ -11,7 +11,7 @@
         </mdb-card-title>
     
         <!--Text-->
-        <mdb-card-text> Test
+        <mdb-card-text> Aktuelle Temperatur: <strong>{{this.getTemp(station)}}</strong>
         </mdb-card-text>
     
         <a href (click)="stationClicked(station); false" mdbBtn color="primary" mdbWavesEffect>Details</a>

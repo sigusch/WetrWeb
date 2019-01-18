@@ -20,13 +20,18 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .welcome {
-    color: white;
-    font-size: 60px;
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    vertical-align: middle;
-    padding-top: 25%;
-    font-weight: bolder;
+  color: white;
+  font-size: 60px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  vertical-align: middle;
+  padding-top: 25%;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 500px) {
+  .welcome {
+    font-size: 30px;
+  }
 }
