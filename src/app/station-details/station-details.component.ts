@@ -92,7 +92,10 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
 
     const parameters = this.route.snapshot.params;
     let data = localStorage.getItem("Dashboard");
-    this.favorites = JSON.parse(data);
+    if (data != null)
+      this.favorites = JSON.parse(data);
+    else
+      this.favorites = new Array<string>();
   }
 
   ngOnDestroy() {
