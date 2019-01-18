@@ -71,19 +71,18 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(parameters => 
       //this.measurementService.MeasurementGetMeasurementForStation({stationId: parameters["id"],from: "01-11-2018", to: "01-12-2018"})
       this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: "01-01-2018", to: "01-12-2018", intervalType: "1", accumulationType: "3"})
-        .subscribe(measurements => {
-          this.measurements = measurements;
-          
-          measurements.forEach(measurement => {
-            this.chartDatasets[0].data.push(measurement.Temperature);
-            this.chartDatasets[1].data.push(measurement.Pressure);
-            this.chartDatasets[2].data.push(measurement.Rainfall);
-            this.chartDatasets[3].data.push(measurement.Moisture*100);
-            this.chartDatasets[4].data.push(measurement.Velocity);
-            this.chartLabels.push(measurement.DateTime);
-            
-          });
-        })
+        .subscribe((measurements) => {this.measurements = measurements;},() => {},
+          () => {
+            this.measurements.forEach(measurement => {
+              this.chartDatasets[0].data.push(measurement.Temperature);
+              this.chartDatasets[1].data.push(measurement.Pressure);
+              this.chartDatasets[2].data.push(measurement.Rainfall);
+              this.chartDatasets[3].data.push(measurement.Moisture*100);
+              this.chartDatasets[4].data.push(measurement.Velocity);
+              this.chartLabels.push(measurement.DateTime);
+              
+            });
+          })
     );
     this.route.params.subscribe(parameters => 
       this.stationService.StationGetById(parameters["id"])
@@ -127,20 +126,9 @@ export class StationDetailsComponent implements OnInit, OnDestroy {
     items.push(parameters["id"]);
     localStorage.setItem("Dashboard", JSON.stringify(items));
     this.favorites = items;
-    //this.toggleAddToDashboardBtn(false);
     
   }
 
-  toggleAddToDashboardBtn(isFavorite: boolean) {
-    var btn = document.getElementById('addToDashboardBtn');
-    if (isFavorite) {
-      btn.textContent = "Zum Dashboard hinzufügen";
-      btn.setAttribute("color", "primary");
-    }
-    else {
-      btn.textContent = "Vom Dashboard entfernen";
-      btn.setAttribute("color", "danger");
-    }
-  }
+
 
 }

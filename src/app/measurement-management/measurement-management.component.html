@@ -2,6 +2,9 @@
   <form class="text-center p-3" #myForm="ngForm" (ngSubmit)="submitForm()">
 
     <p class="h4 mb-4">Messung hinzufügen</p>
+    <div *ngIf="success" class="alert alert-success">
+      {{ success }}
+    </div>
     <div>
       <select name="StationId" [(ngModel)]="measurement.StationId" type="text" id="StationId" class="form-control mb-4" placeholder="Station" required>
           <option *ngFor="let station of stations" [value]=station.Id selected>{{station.Name}}</option>

@@ -16,6 +16,7 @@ export class MeasurementManagementComponent implements OnInit {
   measurement = new Measurement();
   stations: Station[];
   errors: { [key: string]: string } = {};
+  success: string;
 
   constructor(private measurementService: MeasurementService, private stationService: StationService) { }
 
@@ -24,6 +25,7 @@ export class MeasurementManagementComponent implements OnInit {
     this.stationService
     .StationGetAllStations()
     .subscribe(stations => this.stations = stations);
+    this.success = null;
   }
 
   submitForm() {
@@ -32,7 +34,7 @@ export class MeasurementManagementComponent implements OnInit {
       .subscribe(() => {
         this.measurement = new Measurement();
         this.myForm.reset(this.measurement); // reset the validators
-        alert("Messung hinzugefügt");
+        this.success = "Messung hinzugefügt";
       });
   }
 

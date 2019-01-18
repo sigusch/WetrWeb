@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
   <mdb-navbar-brand><a routerLink="home"  routerLinkActive="active" class="navbar-brand" href="#">Wetr.Web</a></mdb-navbar-brand>
 
-  <links>
+  <links class="linkcontainer">
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
@@ -28,7 +28,7 @@
 
     <div *ngIf="login" >
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item">
           <a routerLink="home" class="nav-link waves-light" (click)="logoutClick()">Ausloggen</a>
         </li>
       </ul>

@@ -1,17 +1,22 @@
-<form class="form-inline waves-light" mdbWavesEffect>
-  <div class="md-form my-0" [ngClass]="{ loading: isLoading }">
-    <!--input class="form-control mr-sm-2" type="text" placeholder="Stationsuche" onchange="filterStations()" #searchTerm (keyup)="keyup.emit(searchTerm.value)"-->
-    <input name="searchTerm" id="searchTerm" class="form-control mr-sm-2" type="text" placeholder="Stationsuche" [(ngModel)]="value" #searchTerm (keyup)="filterStations(searchTerm.value)" >
-  </div>
-  
-</form>
-<div class="results transition" [ngClass]="{ visible: foundStations.length }">
-
-  <a href class="result"
-    (click)="stationClicked(station); stationSelected.emit(station); false"
-     *ngFor="let station of foundStations">
-    <div class="content">
-      <div class="name" >{{ station.Name }}</div>
+<div style="overflow: visible; height: 50px;">
+  <form class="form-inline waves-light" mdbWavesEffect>
+    <div class="md-form my-0" [ngClass]="{ loading: isLoading }">
+      <!--input class="form-control mr-sm-2" type="text" placeholder="Stationsuche" onchange="filterStations()" #searchTerm (keyup)="keyup.emit(searchTerm.value)"-->
+      <input name="searchTerm" id="searchTerm" class="form-control mr-sm-2" type="text" placeholder="Stationsuche" [(ngModel)]="value" #searchTerm (keyup)="filterStations(searchTerm.value)" >
     </div>
-  </a>
+    
+  </form>
+  <div class="resultcontainer" [ngClass]="{ visible: foundStations.length }">
+    <ul *ngFor="let station of foundStations" >
+      <li>
+      <a href class="result"
+        (click)="stationClicked(station); stationSelected.emit(station); false"
+        >
+        <div class="content">
+          <div class="name" >{{ station.Name }}</div>
+        </div>
+      </a>
+    </li>
+    </ul>
+  </div>
 </div>

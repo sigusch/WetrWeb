@@ -1,0 +1,17 @@
+.resultcontainer {
+    overflow: hidden;
+    background: white;
+}
+ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+li {
+    float: left;
+}
+#container {
+    overflow: hidden;
+}
+.resultcontainer {
+    z-index: 1;
+}
