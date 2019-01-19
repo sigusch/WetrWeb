@@ -1,0 +1,49 @@
+<div style="width: 50%; margin:0 auto" >
+  <form class="text-center p-3" #myForm="ngForm" (ngSubmit)="submitForm()">
+
+    <p class="h4 mb-4">Station anlegen</p>
+    <div *ngIf="resultSuccess" class="alert alert-success">
+      {{ resultSuccess }}
+    </div>
+    <div *ngIf="resultFailure" class="alert alert-warning">
+      {{ resultFailure }}
+    </div>
+    <div>
+    <input name="StationName" [(ngModel)]="station.Name" type="Text" id="StationName" class="form-control mb-4" placeholder="Stationsname" required>
+      <div *ngIf="errors.StationName" class="alert alert-danger">
+        {{ errors.StationName }}
+      </div>
+    </div>
+    <div>
+      <input name="Street" [(ngModel)]="station.Street" type="text" id="Street" class="form-control mb-4" placeholder="Straße">
+    </div>
+    <div>
+      <select name="Community" [(ngModel)]="station.Community" type="text" id="Community" class="form-control mb-4" placeholder="Gemeinde" required>
+          <option *ngFor="let community of communities" [ngValue]="community" selected>{{community.Name}}</option>
+      </select>
+      <div *ngIf="errors.Community" class="alert alert-danger">
+        {{ errors.Community }}
+      </div>
+    </div>
+    <div>
+      <input name="Latitude" [(ngModel)]="station.Coordinate.Latitude" type="number" step="0.01" min="-273" max="100" id="Latitude" class="form-control mb-4" placeholder="Breitengrad" required>
+      <div *ngIf="errors.Latitude" class="alert alert-danger">
+        {{ errors.Latitude }}
+      </div>
+    </div>
+    <div>
+      <input name="Longitude" [(ngModel)]="station.Coordinate.Longitude" type="number" step="0.01" min="-273" max="100" id="Longitude" class="form-control mb-4" placeholder="Längengrad" required>
+      <div *ngIf="errors.Longitude" class="alert alert-danger">
+        {{ errors.Longitude }}
+      </div>
+    </div>
+
+
+    <button mdbBtn color="primary" block="true" class="my-4" type="submit" [disabled]="myForm.invalid">Station hinzufügen</button>
+
+
+
+  </form>
+<div>
+
+

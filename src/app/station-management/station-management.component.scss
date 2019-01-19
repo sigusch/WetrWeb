@@ -1,0 +1,32 @@
+.stationmanagement {
+    padding-top: 2vh;
+}
+.heading {
+    text-align: center;
+}
+.stationContainer {
+    height: 600px;
+    width: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    float: left;
+    background-color: rgba(150, 150, 150, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.stationForm {
+    height: 600px;
+    width: 800px;
+    background-color: rgba(150, 150, 150, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: left;
+}
+
+.insideFormContainer {
+    margin: 30px;
+    text-align: center
+}
+
+.button {
+    display: inline-block;
+}

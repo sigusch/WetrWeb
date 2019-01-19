@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MeasurementManagementComponent } from './measurement-management/measurement-management.component';
 import { StationManagementComponent } from './station-management/station-management.component';
 import { StationDetailsComponent } from './station-details/station-details.component';
+import { CreateStationComponent } from './create-station/create-station.component'
 import { LoginComponent } from './login/login.component'
 import { CheckLoginGuard } from './check-login-guard.guard'
 import { HomeComponent } from './home/home.component';
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: "station-management",
     component: StationManagementComponent,
+    canActivate: [ CheckLoginGuard ]
+  },  
+  {
+    path: "create-station",
+    component: CreateStationComponent,
     canActivate: [ CheckLoginGuard ]
   },
   {

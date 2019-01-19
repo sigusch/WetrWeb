@@ -54,6 +54,7 @@ class StationService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    if (username != null) __params = __params.set('username', username.toString());
     __body = s;
     let req = new HttpRequest<any>(
       'POST',
@@ -88,6 +89,7 @@ class StationService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    if (username != null) __params = __params.set('username', username.toString());
     __body = s;
     let req = new HttpRequest<any>(
       'PUT',
@@ -122,6 +124,7 @@ class StationService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    if (username != null) __params = __params.set('username', username.toString());
     __body = s;
     let req = new HttpRequest<any>(
       'DELETE',
@@ -218,16 +221,16 @@ class StationService extends __BaseService {
   }
 
   /**
-   * @param stationName undefined
+   * @param username undefined
    */
-  StationGetLikeStationNameResponse(stationName: string): __Observable<__StrictHttpResponse<Array<Station>>> {
+  StationGetLikeusernameResponse(username: string): __Observable<__StrictHttpResponse<Array<Station>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/stations/stationName=${stationName}`,
+      this.rootUrl + `/api/stations/username=${username}`,
       __body,
       {
         headers: __headers,
@@ -243,10 +246,44 @@ class StationService extends __BaseService {
     );
   }
   /**
-   * @param stationName undefined
+   * @param username undefined
    */
-  StationGetLikeStationName(stationName: string): __Observable<Array<Station>> {
-    return this.StationGetLikeStationNameResponse(stationName).pipe(
+  StationGetLikeusername(username: string): __Observable<Array<Station>> {
+    return this.StationGetLikeusernameResponse(username).pipe(
+      __map(_r => _r.body as Array<Station>)
+    );
+  }
+
+  /**
+   * @param username undefined
+   */
+  StationGetByUsernameResponse(username: string): __Observable<__StrictHttpResponse<Array<Station>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/stations/userName=${username}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<Station>>;
+      })
+    );
+  }
+  /**
+   * @param username undefined
+   */
+  StationGetByUsernameName(username: string): __Observable<Array<Station>> {
+    return this.StationGetByUsernameResponse(username).pipe(
       __map(_r => _r.body as Array<Station>)
     );
   }
@@ -274,7 +311,7 @@ class StationService extends __BaseService {
     );
   }
   /**
-   * @param stationName undefined
+   * @param username undefined
    */
   StationGetCommunities(): __Observable<Array<Community>> {
     return this.StationGetCommunitiesResponse().pipe(

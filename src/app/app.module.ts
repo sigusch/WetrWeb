@@ -15,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { StationDetailsComponent } from './station-details/station-details.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { CreateStationComponent } from './create-station/create-station.component'
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { HomeComponent } from './home/home.component'
     SearchComponent,
     StationDetailsComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CreateStationComponent
   ],
   imports: [
     BrowserModule,
