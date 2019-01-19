@@ -50,7 +50,7 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationInsertResponse(s: Station): __Observable<__StrictHttpResponse<null>> {
+  StationInsertResponse(s: Station, username: string): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -75,8 +75,8 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationInsert(s: Station): __Observable<null> {
-    return this.StationInsertResponse(s).pipe(
+  StationInsert(s: Station, username: string): __Observable<null> {
+    return this.StationInsertResponse(s, username).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -84,7 +84,7 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationUpdateResponse(s: Station): __Observable<__StrictHttpResponse<null>> {
+  StationUpdateResponse(s: Station, username: string): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -109,8 +109,8 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationUpdate(s: Station): __Observable<null> {
-    return this.StationUpdateResponse(s).pipe(
+  StationUpdate(s: Station, username: string): __Observable<null> {
+    return this.StationUpdateResponse(s, username).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -118,7 +118,7 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationDeleteResponse(s: Station): __Observable<__StrictHttpResponse<null>> {
+  StationDeleteResponse(s: Station, username: string): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -143,8 +143,8 @@ class StationService extends __BaseService {
   /**
    * @param s undefined
    */
-  StationDelete(s: Station): __Observable<null> {
-    return this.StationDeleteResponse(s).pipe(
+  StationDelete(s: Station, username: string): __Observable<null> {
+    return this.StationDeleteResponse(s, username).pipe(
       __map(_r => _r.body as null)
     );
   }
