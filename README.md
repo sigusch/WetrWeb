@@ -8,11 +8,11 @@
 
 ## 1.2 Verwendete Technologien
 
-• Bootstrap
+• [Bootstrap](https://getbootstrap.com/)
 
-• Material Design for Bootstrap
+• [Material Design for Bootstrap](https://mdbootstrap.com/docs/angular/)
 
-• Font Awesome
+• [Font Awesome](https://fontawesome.com/)
 
 ## 1.3 Inbetriebnahme
 
