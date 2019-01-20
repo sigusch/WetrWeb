@@ -19,11 +19,10 @@
 Um das Projekt in Betrieb zu nehmen muss zunächst `npm install` durchgeführt werden um die
 benötigten Packete zu installieren. Danach kann mit `ng serve` die Angular Anwendung gestartet
 werden. Standardmäßig ist die Andwendung dann unter http://localhost:4200/ erreichbar.  
-Die Adresse des zu verwendenden REST-Services kann in der Datei api-configuration.ts festge-
-legt werden. Standardmäßig ist dort http://localhost:54405 hinterlegt.  
+Die Adresse des zu verwendenden REST-Services kann in der Datei api-configuration.ts festgelegt werden. Standardmäßig ist dort http://localhost:54405 hinterlegt.  
 
 **Achtung**  
-Um den Service ordnungsgemäß zu verwenden muss eine entsprechender REST-Service eingetragen
+Um den Service ordnungsgemäß zu verwenden muss ein entsprechender REST-Service eingetragen
 und verfügbar sein. ̈
 
 
