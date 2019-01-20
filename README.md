@@ -39,7 +39,7 @@ Dieses Sequenzdiagram zeigt den Aufbau der Architektur am Beispiel der Stationss
 
 Die Services uns Modelklassen wurden automatisch aus dem vom REST-Service zur Verfugung ̈gestellten swagger.json generiert. Deswegen ist die Namensgebung und Codestruktur nicht optimal.
 
-## 3.1 measuremen-service
+## 3.1 measurement-service
 
 • MeasurementGetMeasurementForStation(...)
 
