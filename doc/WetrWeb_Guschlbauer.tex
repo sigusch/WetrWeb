@@ -54,6 +54,18 @@ Die Adresse des zu verwendenden REST-Services kann in der Datei api-configuratio
 Um den Service ordnungsgemäß zu verwenden muss eine entsprechender REST-Service eingetragen und verfügbar sein.
 \pagebreak
 \section{Architektur}
+\subsection{Komponentendiagram}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{./architecture/components.jpg}
+	\centering
+\end{figure}
+\pagebreak
+\subsection{Sequenzdiagramm}
+Dieses Sequenzdiagram zeigt den Aufbau der Architektur am Beispiel der Stationssuche.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{./architecture/sequence.jpg}
+	\centering
+\end{figure}
 \pagebreak
 \section{Services}
 Die Services uns Modelklassen wurden automatisch aus dem vom REST-Service zur Verfügung gestellten swagger.json generiert. Deswegen ist die Namensgebung und Codestruktur nicht optimal.
@@ -86,7 +98,7 @@ Die Services uns Modelklassen wurden automatisch aus dem vom REST-Service zur Ve
 	Fragt Station nach Stations-Id ab
 	\item StationGetByCommunity(...)\\
 	Fragt Stationen nach Gemeinde ab
-	\item StationGetByUsernameName(...)\\
+	\item StationGetByUsername(...)\\
 	Fragt Stationen nach Ersteller ab
 	\item StationGetCommunities(...)\\
 	Fragt alle Gemeinden ab 
