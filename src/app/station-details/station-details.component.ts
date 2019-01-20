@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Station, Measurement } from '../api/models'
 import { StationService, MeasurementService } from '../api/services'
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,11 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './station-details.component.html',
   styleUrls: ['./station-details.component.scss']
 })
-export class StationDetailsComponent implements OnInit, OnDestroy, OnChanges {
+export class StationDetailsComponent implements OnInit {
+  @ViewChild('myForm') myForm: NgForm;
   station: Station = new Station();
   favorites: Array<string>;
   measurements: Array<Measurement>;
   login: boolean;
+  from: Date;
+  to: Date;
+  accumulationType: string = "0";
+  intervalType: string = "0";
 
   public chartType: string = 'line';
   public chartColors: Array<any> = [
@@ -97,6 +103,7 @@ export class StationDetailsComponent implements OnInit, OnDestroy, OnChanges {
       this.favorites = new Array<string>();
   }
 
+  /*
   ngOnChanges() {
     console.log("onChanges");
     this.route.params.subscribe(parameters => 
@@ -116,10 +123,66 @@ export class StationDetailsComponent implements OnInit, OnDestroy, OnChanges {
           })
     );
   }
+  */
 
-  ngOnDestroy() {
-  }
   
+  filter() {
+    this.chartDatasets = [
+      { data: [], label: 'Temperatur' },
+      { data: [], label: 'Luftdruck' },
+      { data: [], label: 'Niederschlagsmenge' },
+      { data: [], label: 'Luftfeuchtigkeit in %' },
+      { data: [], label: 'Windgeschwindigkeit' },
+    ];
+    this.chartLabels = [];
+    console.log(this.from);
+    console.log(this.to);
+    let fromString = this.formatDate(this.from);
+    let toString = this.formatDate(this.to);
+    console.log(fromString);
+    console.log(toString);
+    if (this.accumulationType != "0" && this.intervalType != "0") {
+      let at: "0" | "1" | "2" | "3" | "4" = this.accumulationType as "0" | "1" | "2" | "3" | "4";
+      let it: "0" | "1" | "2" | "3" | "4" = this.intervalType as "0" | "1" | "2" | "3" | "4";
+      this.route.params.subscribe(parameters => 
+        this.measurementService.MeasurementGetAccumulationForStation({stationId: parameters["id"],from: fromString, to: toString, intervalType: it, accumulationType: at})
+          .subscribe((measurements) => {this.measurements = measurements;},() => {},
+            () => {
+              this.measurements.forEach(measurement => {
+                this.chartDatasets[0].data.push(measurement.Temperature);
+                this.chartDatasets[1].data.push(measurement.Pressure);
+                this.chartDatasets[2].data.push(measurement.Rainfall);
+                this.chartDatasets[3].data.push(measurement.Moisture*100);
+                this.chartDatasets[4].data.push(measurement.Velocity);
+                this.chartLabels.push(measurement.DateTime);
+                
+              });
+            })
+      );
+    } else {
+      this.route.params.subscribe(parameters => 
+        this.measurementService.MeasurementGetMeasurementForStation({stationId: parameters["id"],from: fromString, to: toString})
+          .subscribe((measurements) => {this.measurements = measurements;},() => {},
+            () => {
+              this.measurements.forEach(measurement => {
+                this.chartDatasets[0].data.push(measurement.Temperature);
+                this.chartDatasets[1].data.push(measurement.Pressure);
+                this.chartDatasets[2].data.push(measurement.Rainfall);
+                this.chartDatasets[3].data.push(measurement.Moisture*100);
+                this.chartDatasets[4].data.push(measurement.Velocity);
+                this.chartLabels.push(measurement.DateTime);
+                
+              });
+            })
+      );
+    }
+  }
+
+  formatDate(dateStr)
+  {
+    var dArr = dateStr.split("-");  // ex input "2010-01-18"
+    return dArr[2]+ "-" + dArr[1] + "-" +dArr[0]; //ex out: "18/01/10"
+  }
 
   addToDashboard() {
     const parameters = this.route.snapshot.params;

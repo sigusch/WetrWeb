@@ -36,6 +36,37 @@
   </ngb-panel>
 </ngb-accordion>
 </div>
+<form #myForm="ngForm" (ngSubmit)="filter()">
+    <div class="form-row mb-4">
+        <div class="col">
+          <input type="date" name="from" id="from" [(ngModel)]="from" class="form-control" useValueAsDate placeholder="von">
+        </div>
+        <div class="col">
+          <input type="date" name="to" id="to" [(ngModel)]="to" class="form-control" useValueAsDate placeholder="bis">
+        </div>
+        <div class="col">
+            <select type="date" name="accumulationType" id="accumulationType" [(ngModel)]="accumulationType" class="form-control" placeholder="Akkumulation">
+                <option value="0" selected>kein Akkumulation</option>
+                <option value="1">Minimum</option>
+                <option value="2">Maximum</option>
+                <option value="3" selected>Durchschnitt</option>
+                <option value="4" selected>Summe</option>
+            </select>
+        </div>        
+        <div class="col">
+            <select type="date" name="intervalType" id="intervalType" [(ngModel)]="intervalType" class="form-control" placeholder="Intervall">
+                <option value="0" selected>kein Intervall</option>
+                <option value="1">Tag</option>
+                <option value="2">Woche</option>
+                <option value="3" selected>Monat</option>
+                <option value="4" selected>Jahr</option>
+            </select>
+        </div>
+        <div class="col">
+            <button mdbBtn color="info" block="true" class="my-4" style="align-self: top" type="submit">Suche</button>
+        </div>
+      </div> 
+</form>
 <div style="display: inline-block; width: 80vw;">
   <canvas mdbChart
       [chartType]="chartType"
